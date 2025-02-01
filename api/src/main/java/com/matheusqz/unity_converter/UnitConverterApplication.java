@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UnityConverterApplication {
+public class UnitConverterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UnityConverterApplication.class, args);
+		SpringApplication.run(UnitConverterApplication.class, args);
 	}
 
 }

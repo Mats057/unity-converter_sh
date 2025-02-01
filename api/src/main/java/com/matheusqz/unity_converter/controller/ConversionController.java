@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.matheusqz.unity_converter.models.ConversionRequest;
-import com.matheusqz.unity_converter.models.UnitValues.LengthUnit;
-import com.matheusqz.unity_converter.models.UnitValues.TemperatureUnit;
-import com.matheusqz.unity_converter.models.UnitValues.WeightUnit;
+import com.matheusqz.unity_converter.models.Unit;
+import com.matheusqz.unity_converter.services.UnitConverterService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,22 +22,19 @@ public class ConversionController {
 
     @GetMapping("")
     public String testing() {
-        return new String("Funcionando!");
+        return new String("Working!");
     }
 
     @PostMapping("")
     public String convert(@RequestBody String entity) {
         System.out.println(entity);
         ConversionRequest request = gson.fromJson(entity, ConversionRequest.class);
-        switch (request.unitType()) {
-            case "Length":
-                return gson.toJson(LengthUnit.fromString(request.firstUnit()).convertTo(request));
-            case "Weight":
-                return gson.toJson(WeightUnit.fromString(request.firstUnit()).convertTo(request));
-            case "Temperature":
-                return gson.toJson(TemperatureUnit.fromString(request.firstUnit()).convertTo(request));
-            default:
-                return "Tipo de unidade desconhecido: " + entity;
+
+        try {
+            Unit unit = UnitConverterService.getUnitByName(request.firstUnit(), request.unitType());
+            return gson.toJson(unit.convertTo(request));
+        } catch (IllegalArgumentException e) {
+            return "Erro: " + e.getMessage();
         }
     }
 }
