@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.matheusqz.unity_converter.models.ConversionRequest;
-import com.matheusqz.unity_converter.models.Unit;
-import com.matheusqz.unity_converter.services.UnitConverterService;
+import com.matheusqz.unity_converter.models.UnitType;
+import com.matheusqz.unity_converter.services.UnitTypeConverterService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,8 +31,8 @@ public class ConversionController {
         ConversionRequest request = gson.fromJson(entity, ConversionRequest.class);
 
         try {
-            Unit unit = UnitConverterService.getUnitByName(request.firstUnit(), request.unitType());
-            return gson.toJson(unit.convertTo(request));
+            UnitType unitType = UnitTypeConverterService.getUnitByName(request.firstUnit(), request.unitType());
+            return gson.toJson(unitType.convertTo(request));
         } catch (IllegalArgumentException e) {
             return "Erro: " + e.getMessage();
         }

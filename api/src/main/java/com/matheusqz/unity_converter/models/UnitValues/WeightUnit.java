@@ -1,9 +1,9 @@
 package com.matheusqz.unity_converter.models.UnitValues;
 
 import com.matheusqz.unity_converter.models.ConversionRequest;
-import com.matheusqz.unity_converter.models.Unit;
+import com.matheusqz.unity_converter.models.UnitType;
 
-public enum WeightUnit implements Unit {
+public enum WeightUnit implements UnitType {
     KILOGRAM("kilogram", 1),
     GRAM("GRAM", 1000.0),
     MILLIGRAM("milligram", 1000000.0),

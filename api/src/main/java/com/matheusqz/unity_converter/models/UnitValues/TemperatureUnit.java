@@ -1,9 +1,9 @@
 package com.matheusqz.unity_converter.models.UnitValues;
 
 import com.matheusqz.unity_converter.models.ConversionRequest;
-import com.matheusqz.unity_converter.models.Unit;
+import com.matheusqz.unity_converter.models.UnitType;
 
-public enum TemperatureUnit implements Unit {
+public enum TemperatureUnit implements UnitType {
     CELSIUS("celsius") {
         @Override
         public double toCelsius(double value) {

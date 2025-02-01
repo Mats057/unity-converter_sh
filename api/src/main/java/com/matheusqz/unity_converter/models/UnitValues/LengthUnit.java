@@ -1,9 +1,9 @@
 package com.matheusqz.unity_converter.models.UnitValues;
 
 import com.matheusqz.unity_converter.models.ConversionRequest;
-import com.matheusqz.unity_converter.models.Unit;
+import com.matheusqz.unity_converter.models.UnitType;
 
-public enum LengthUnit implements Unit{
+public enum LengthUnit implements UnitType{
     METER("meter", 1.0),
     KILOMETER("kilometer", 0.001),
     CENTIMETER("centimeter", 100.0),
